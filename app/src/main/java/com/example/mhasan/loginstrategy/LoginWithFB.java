@@ -6,7 +6,7 @@ import android.util.Log;
  * Created by mhasan on 3/30/2017.
  */
 
-public class LoginWithFB implements  LoginStrtegy {
+public class LoginWithFB implements LoginStrategy {
 
     @Override
     public void login() {

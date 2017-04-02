@@ -8,7 +8,16 @@ import android.widget.Toast;
 
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
-    LoginStrtegy loginStrategy;
+    LoginStrategy loginStrategy;
+
+    public void setLoginStrategy(LoginStrategy L) {
+        this.loginStrategy = L;
+
+    }
+
+    public void PerformLogin() {
+        loginStrategy.login();
+    }
 
 
     @Override
@@ -35,21 +44,28 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         String text;
         switch (v.getId()) {
             case R.id.GoogleLogin:
-                LoginWithGoogle LWG = new LoginWithGoogle();
-                LWG.login();
+
+                loginStrategy = new LoginWithGoogle();
+                PerformLogin();
+                 setLoginStrategy(new LoginWithEmail());
+                loginStrategy.login();
                 text = "U have login with Google account";
                 Toast.makeText(getBaseContext(), text, Toast.LENGTH_SHORT).show();
 
                 break;
             case R.id.EmailLogin:
-                LoginWithEmail LWE = new LoginWithEmail();
-                LWE.login();
+
+                loginStrategy = new LoginWithEmail();
+                PerformLogin();
+
                 text = "U have login with Email account";
                 Toast.makeText(getBaseContext(), text, Toast.LENGTH_SHORT).show();
                 break;
             case R.id.FBLogin:
-                LoginWithFB LWF = new LoginWithFB();
-                LWF.login();
+
+                loginStrategy = new LoginWithFB();
+                PerformLogin();
+
                 text = "U have login with Facebook account";
                 Toast.makeText(getBaseContext(), text, Toast.LENGTH_SHORT).show();
 
